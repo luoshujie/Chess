@@ -28,6 +28,7 @@
                 <e p="TextureMgr.cs" t="Include" />
               </e>
               <e p="UI" t="Include">
+                <e p="CardDragMgr.cs" t="Include" />
                 <e p="HeroCard.cs" t="Include" />
               </e>
             </e>
