@@ -16,10 +16,15 @@
                 <e p="CharacterBase" t="Include">
                   <e p="BuffConfig.cs" t="Include" />
                   <e p="PersonBase.cs" t="Include" />
+                  <e p="SkillInterface.cs" t="Include" />
                 </e>
                 <e p="CharacterData" t="Include">
                   <e p="PersonData.cs" t="Include" />
                 </e>
+              </e>
+              <e p="Manager" t="Include">
+                <e p="FightMgr.cs" t="Include" />
+                <e p="RefreshMgr.cs" t="Include" />
               </e>
             </e>
           </e>
