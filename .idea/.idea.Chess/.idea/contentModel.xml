@@ -25,6 +25,10 @@
               <e p="Manager" t="Include">
                 <e p="FightMgr.cs" t="Include" />
                 <e p="RefreshMgr.cs" t="Include" />
+                <e p="TextureMgr.cs" t="Include" />
+              </e>
+              <e p="UI" t="Include">
+                <e p="HeroCard.cs" t="Include" />
               </e>
             </e>
           </e>
