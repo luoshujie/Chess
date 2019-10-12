@@ -10,9 +10,13 @@
           <e p="Enum" t="Include">
             <e p="CharacterTypeEnum.cs" t="Include" />
           </e>
+          <e p="GameConfig.cs" t="Include" />
           <e p="Scene" t="Include">
             <e p="Game" t="Include">
               <e p="Character" t="Include">
+                <e p="Character" t="Include">
+                  <e p="Archer.cs" t="Include" />
+                </e>
                 <e p="CharacterBase" t="Include">
                   <e p="BuffConfig.cs" t="Include" />
                   <e p="PersonBase.cs" t="Include" />
@@ -22,13 +26,14 @@
                   <e p="PersonData.cs" t="Include" />
                 </e>
               </e>
+              <e p="CharacterPos.cs" t="Include" />
               <e p="Manager" t="Include">
                 <e p="FightMgr.cs" t="Include" />
                 <e p="RefreshMgr.cs" t="Include" />
                 <e p="TextureMgr.cs" t="Include" />
+                <e p="UiMgr.cs" t="Include" />
               </e>
               <e p="UI" t="Include">
-                <e p="CardDragMgr.cs" t="Include" />
                 <e p="HeroCard.cs" t="Include" />
               </e>
             </e>

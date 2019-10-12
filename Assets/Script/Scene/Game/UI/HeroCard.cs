@@ -49,6 +49,18 @@ namespace Script.Scene.Game.UI
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray,out hit))
+            {
+                if (hit.collider.CompareTag("PlayerPos"))
+                {
+                    personData=new PersonData();
+                    personData.Id = 1;
+                    hit.collider.GetComponent<CharacterPos>().InitChessPos(personData);
+                }
+            }
+
             drayImg.transform.SetParent(parentTransf);
             drayImg.transform.localPosition = startPos;
             drayImg.transform.SetSiblingIndex(layerNum);

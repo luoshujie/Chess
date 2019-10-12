@@ -1,17 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Script.Scene.Game.Manager
 {
     public class FightMgr : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
+        public static FightMgr instance;
 
-        // Update is called once per frame
-        void Update()
+        public List<GameObject> PlayerPosList;
+        public List<GameObject> EnemyPosList;
+
+        private void Awake()
         {
+            instance = this;
         }
     }
 }
