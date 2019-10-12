@@ -10,6 +10,9 @@
           <e p="Enum" t="Include">
             <e p="CharacterTypeEnum.cs" t="Include" />
           </e>
+          <e p="Event" t="Include">
+            <e p="RefreshAttackEvent.cs" t="Include" />
+          </e>
           <e p="GameConfig.cs" t="Include" />
           <e p="Scene" t="Include">
             <e p="Game" t="Include">

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Script.Scene.Game.Character.CharacterData;
+using Script.Scene.Game.Manager;
 using UnityEngine;
 
 namespace Script.Scene.Game.Character.CharacterBase
@@ -17,11 +19,13 @@ namespace Script.Scene.Game.Character.CharacterBase
         {
             this.personData = personData;
             CurrAttackTime = personData.AttackSpeed;
+            FightMgr.instance.refreshAttackEvent.AddListener(Attack);
         }
 
-        public virtual void AddTargetPersonBase(PersonBase targetPersonBase)
+        public virtual void AddTargetPersonBase()
         {
-            this.TargetPersonBase = targetPersonBase;
+            float distance;
+            TargetPersonBase=FightMgr.instance.GetEnemyAtMinDistance(this, out distance);
         }
 
         public virtual void CutTargetPersonBase()
@@ -46,7 +50,8 @@ namespace Script.Scene.Game.Character.CharacterBase
                 personData.CurrLife += value;
                 if (personData.CurrLife > personData.MaxLife) personData.CurrLife = personData.MaxLife;
 
-                if (personData.CurrLife < 0)
+                Debug.Log(personData.CurrLife);
+                if (personData.CurrLife <=0)
                 {
                     personData.CurrLife = 0;
                     SetAliveState(false);
@@ -57,6 +62,9 @@ namespace Script.Scene.Game.Character.CharacterBase
         public virtual void SetAliveState(bool state)
         {
             personData.Alive = state;
+            FightMgr.instance.refreshAttackEvent.RemoveListener(Attack);
+            FightMgr.instance.RemovePerson(this);
+            Destroy(gameObject);
         }
 
         public virtual void AddEnergy(int value)
@@ -98,9 +106,17 @@ namespace Script.Scene.Game.Character.CharacterBase
 
         public virtual void Attack(float time)
         {
-            CurrAttackTime -= time;
+            CurrAttackTime -= time/1000;
             if (CurrAttackTime > 0) return;
-            if (TargetPersonBase == null) return;
+            Debug.Log("attack");
+            CurrAttackTime = personData.AttackSpeed;
+            if (TargetPersonBase == null || !TargetPersonBase.personData.Alive)
+            {
+                AddTargetPersonBase();
+            }
+            if (TargetPersonBase == null||!personData.Alive||!TargetPersonBase.personData.Alive) return;
+            FightMgr.instance.Hurt(this,TargetPersonBase);
+            Debug.Log("attacking");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Script.Scene.Game.Character.CharacterBase;
+﻿using Script.Enum;
+using Script.Scene.Game.Character.CharacterBase;
+using Script.Scene.Game.Character.CharacterData;
 using Script.Scene.Game.Manager;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -55,8 +57,7 @@ namespace Script.Scene.Game.UI
             {
                 if (hit.collider.CompareTag("PlayerPos"))
                 {
-                    personData=new PersonData();
-                    personData.Id = 1;
+                    personData=new PersonData(CharacterTypeEnum.Player,1,10,10,2,1,1,1,100,100);
                     hit.collider.GetComponent<CharacterPos>().InitChessPos(personData);
                 }
             }
