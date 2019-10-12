@@ -3,6 +3,7 @@ using Script.Enum;
 using Script.Scene.Game.Character.CharacterBase;
 using Script.Scene.Game.Character.CharacterData;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Script.Scene.Game
 {
@@ -11,6 +12,15 @@ namespace Script.Scene.Game
         public PersonBase personBase;
 
         private void Start()
+        {
+            if (Random.Range(0,2)==0)
+            {
+                Invoke("AddModel",3);
+            }
+           
+        }
+
+        private void AddModel()
         {
             if (gameObject.tag == "EnemyPos")
             {
