@@ -13,6 +13,15 @@
           <e p="Event" t="Include">
             <e p="RefreshAttackEvent.cs" t="Include" />
           </e>
+          <e p="FSM" t="Include">
+            <e p="ChasePlayerState.cs" t="Include" />
+            <e p="FollowPathState.cs" t="Include" />
+            <e p="FsmSystem.cs" t="Include" />
+            <e p="NpcContorl.cs" t="Include" />
+            <e p="StateBase.cs" t="Include" />
+            <e p="StateID.cs" t="Include" />
+            <e p="Transition.cs" t="Include" />
+          </e>
           <e p="GameConfig.cs" t="Include" />
           <e p="Scene" t="Include">
             <e p="Game" t="Include">
