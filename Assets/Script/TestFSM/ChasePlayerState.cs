@@ -6,24 +6,24 @@ namespace Script.FSM
     {
         public ChasePlayerState()
         {
-            stateID = StateID.ChasingPlayer;
+            stateID = StateID.Attack;
         }
-        public override void CheckTransition(GameObject player, GameObject npc)
+        public override void CheckTransition(GameObject self, GameObject target)
         {
-            if (Vector3.Distance(player.transform.position,npc.transform.position)>30)
+            if (Vector3.Distance(self.transform.position,target.transform.position)>30)
             {
-                npc.GetComponent<NpcContorl>().SetTransition(Transition.LostPlayer);
+                target.GetComponent<NpcContorl>().SetTransition(Transition.MoveToTarget);
             }
         }
 
-        public override void Act(GameObject player, GameObject npc)
+        public override void Act(GameObject self, GameObject target)
         {
-            Rigidbody rb = npc.GetComponent<Rigidbody>();
+            Rigidbody rb = target.GetComponent<Rigidbody>();
             Vector3 vel = rb.velocity;
-            Vector3 moveDir = player.transform.position - npc.transform.position;
+            Vector3 moveDir = self.transform.position - target.transform.position;
             
-            npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation,Quaternion.LookRotation(moveDir), 5*Time.deltaTime);
-            npc.transform.eulerAngles=new Vector3(0,npc.transform.eulerAngles.y,0);
+            target.transform.rotation = Quaternion.Slerp(target.transform.rotation,Quaternion.LookRotation(moveDir), 5*Time.deltaTime);
+            target.transform.eulerAngles=new Vector3(0,target.transform.eulerAngles.y,0);
             vel = moveDir.normalized * 10;
             rb.velocity = vel;
         }

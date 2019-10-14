@@ -29,9 +29,9 @@ namespace Script.FSM
         private void MaskFSM()
         {
             FollowPathState followPathState=new FollowPathState(paths);
-            followPathState.AddTransition(Transition.SamPlayer,StateID.ChasingPlayer);
+            followPathState.AddTransition(Transition.Attack,StateID.Attack);
             ChasePlayerState chasePlayerState =new ChasePlayerState();
-            chasePlayerState.AddTransition(Transition.LostPlayer,StateID.FollowingPath);
+            chasePlayerState.AddTransition(Transition.MoveToTarget,StateID.MoveToTarget);
             fsm = new FsmSystem();
             fsm.AddState(followPathState);
             fsm.AddState(chasePlayerState);

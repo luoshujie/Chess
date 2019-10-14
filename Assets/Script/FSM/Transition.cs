@@ -6,7 +6,7 @@
     public enum Transition
     {
         NullTransition = 0,
-        LostPlayer,
-        SamPlayer
+        MoveToTarget,
+        Attack
     }
 }

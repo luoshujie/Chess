@@ -3,7 +3,7 @@
     public enum StateID
     {
         NullStateID = 0,
-        FollowingPath,
-        ChasingPlayer
+        MoveToTarget,
+        Attack
     }
 }

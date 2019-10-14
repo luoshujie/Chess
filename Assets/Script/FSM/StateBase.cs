@@ -5,6 +5,7 @@ namespace Script.FSM
 {
     public abstract class StateBase
     {
+        public FsmSystem Fsm;
         protected StateID stateID;
 
         public StateID ID
@@ -90,13 +91,13 @@ namespace Script.FSM
         /// </summary>
         /// <param name="player"></param>
         /// <param name="npc"></param>
-        public abstract void CheckTransition(GameObject player, GameObject npc);
+        public abstract void CheckTransition(GameObject self, GameObject target);
 
         /// <summary>
         /// 控制npc的行为，每侦都会执行
         /// </summary>
         /// <param name="player"></param>
         /// <param name="npc"></param>
-        public abstract void Act(GameObject player,GameObject npc);
+        public abstract void Act(GameObject self,GameObject target);
     }
 }
