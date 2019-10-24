@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
+using Script.Scene.Game.Character.CharacterBase;
 using UnityEngine;
 
 namespace Script.FSM
 {
     public abstract class StateBase
     {
-        public FsmSystem Fsm;
+        protected FsmSystem Fsm;
         protected StateID stateID;
+        protected Animator anim;
 
         public StateID ID
         {
@@ -91,13 +93,13 @@ namespace Script.FSM
         /// </summary>
         /// <param name="player"></param>
         /// <param name="npc"></param>
-        public abstract void CheckTransition(GameObject self, GameObject target);
+        public abstract void CheckTransition(PersonBase targetPerson);
 
         /// <summary>
         /// 控制npc的行为，每侦都会执行
         /// </summary>
         /// <param name="player"></param>
         /// <param name="npc"></param>
-        public abstract void Act(GameObject self,GameObject target);
+        public abstract PersonBase Act(PersonBase targetPerson);
     }
 }

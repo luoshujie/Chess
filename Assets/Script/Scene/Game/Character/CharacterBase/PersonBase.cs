@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Script.FSM;
 using Script.Scene.Game.Character.CharacterData;
 using Script.Scene.Game.Manager;
 using UnityEngine;
@@ -9,28 +10,12 @@ namespace Script.Scene.Game.Character.CharacterBase
     {
         public PersonData personData;
 
-        public List<BuffConfig> BuffConfigList = new List<BuffConfig>();
-
-        public PersonBase TargetPersonBase;
-
-        public float CurrAttackTime;
+        public float CurrAttackTime = 0;
 
         public virtual void Init(PersonData personData)
         {
             this.personData = personData;
-            CurrAttackTime = personData.AttackSpeed;
-            FightMgr.instance.refreshAttackEvent.AddListener(Attack);
-        }
-
-        public virtual void AddTargetPersonBase()
-        {
-            float distance;
-            TargetPersonBase=FightMgr.instance.GetEnemyAtMinDistance(this, out distance);
-        }
-
-        public virtual void CutTargetPersonBase()
-        {
-            TargetPersonBase = null;
+            FightMgr.instance.refreshAttackEvent.AddListener(AttackCooling);
         }
 
         public virtual void Hurt(int value)
@@ -51,7 +36,7 @@ namespace Script.Scene.Game.Character.CharacterBase
                 if (personData.CurrLife > personData.MaxLife) personData.CurrLife = personData.MaxLife;
 
                 Debug.Log(personData.CurrLife);
-                if (personData.CurrLife <=0)
+                if (personData.CurrLife <= 0)
                 {
                     personData.CurrLife = 0;
                     SetAliveState(false);
@@ -62,7 +47,7 @@ namespace Script.Scene.Game.Character.CharacterBase
         public virtual void SetAliveState(bool state)
         {
             personData.Alive = state;
-            FightMgr.instance.refreshAttackEvent.RemoveListener(Attack);
+            FightMgr.instance.refreshAttackEvent.RemoveListener(AttackCooling);
             FightMgr.instance.RemovePerson(this);
             Destroy(gameObject);
         }
@@ -92,31 +77,22 @@ namespace Script.Scene.Game.Character.CharacterBase
         {
             if (personData.Alive)
             {
-                BuffConfigList.Add(buffConfig);
+                personData.BuffConfigList.Add(buffConfig);
             }
         }
 
         public virtual void CutBuff(BuffConfig buffConfig)
         {
-            if (BuffConfigList.Contains(buffConfig))
+            if (personData.BuffConfigList.Contains(buffConfig))
             {
-                BuffConfigList.Remove(buffConfig);
+                personData.BuffConfigList.Remove(buffConfig);
             }
         }
 
-        public virtual void Attack(float time)
+        public virtual void AttackCooling(float time)
         {
-            CurrAttackTime -= time/1000;
-            if (CurrAttackTime > 0) return;
-            Debug.Log("attack");
-            CurrAttackTime = personData.AttackSpeed;
-            if (TargetPersonBase == null || !TargetPersonBase.personData.Alive)
-            {
-                AddTargetPersonBase();
-            }
-            if (TargetPersonBase == null||!personData.Alive||!TargetPersonBase.personData.Alive) return;
-            FightMgr.instance.Hurt(this,TargetPersonBase);
-            Debug.Log("attacking");
+            if (CurrAttackTime <= 0) return;
+            CurrAttackTime -= time / 1000;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Script.Enum;
+﻿using System.Collections.Generic;
+using Script.Enum;
+using Script.Scene.Game.Character.CharacterBase;
 
 namespace Script.Scene.Game.Character.CharacterData
 {
@@ -15,11 +17,15 @@ namespace Script.Scene.Game.Character.CharacterData
         public int AttackSpeed;
         public int MaxEnergy;
         public int CurrEnergy;
+        public float AttackDistance;
 
         public bool Alive;
 
-        public PersonData(CharacterTypeEnum characterTypeEnum,int id, int level, int maxLife, int attack, int defense, int moveSpeed,
-            int attackSpeed, int maxEnergy, int currEnergy)
+        public List<BuffConfig> BuffConfigList = new List<BuffConfig>();
+
+        public PersonData(CharacterTypeEnum characterTypeEnum, int id, int level, int maxLife, int attack, int defense,
+            int moveSpeed,
+            int attackSpeed, int maxEnergy, int currEnergy, float attackDistance)
         {
             this.characterTypeEnum = characterTypeEnum;
             Id = id;
@@ -32,6 +38,7 @@ namespace Script.Scene.Game.Character.CharacterData
             AttackSpeed = attackSpeed;
             MaxEnergy = maxEnergy;
             CurrEnergy = currEnergy;
+            AttackDistance = attackDistance;
             Alive = true;
         }
 

@@ -7,6 +7,7 @@
     {
         NullTransition = 0,
         MoveToTarget,
-        Attack
+        Attack,
+        SeekTarget
     }
 }

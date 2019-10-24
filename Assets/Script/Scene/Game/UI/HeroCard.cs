@@ -57,7 +57,7 @@ namespace Script.Scene.Game.UI
             {
                 if (hit.collider.CompareTag("PlayerPos"))
                 {
-                    personData=new PersonData(CharacterTypeEnum.Player,1,10,10,2,1,1,1,100,100);
+                    personData=new PersonData(CharacterTypeEnum.Player,1,10,10,2,1,1,1,100,100,1);
                     hit.collider.GetComponent<CharacterPos>().InitChessPos(personData);
                 }
             }

@@ -51,7 +51,7 @@ namespace Script.FSM
             {
                 if (s.ID==state.ID)
                 {
-                    Debug.LogError("已经存在这个状态");
+                    Debug.LogError("已经存在这个状态"+s);
                     return;
                 }
             }

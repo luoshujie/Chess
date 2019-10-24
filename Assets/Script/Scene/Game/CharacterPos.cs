@@ -13,10 +13,10 @@ namespace Script.Scene.Game
 
         private void Start()
         {
-            if (Random.Range(0,2)==0)
-            {
-                Invoke("AddModel",3);
-            }
+//            if (Random.Range(0,2)==0)
+//            {
+//                Invoke("AddModel",3);
+//            }
            
         }
 
@@ -24,7 +24,7 @@ namespace Script.Scene.Game
         {
             if (gameObject.tag == "EnemyPos")
             {
-                PersonData personData=new PersonData(CharacterTypeEnum.Enemy,1,10,10,2,1,1,1,100,100);
+                PersonData personData=new PersonData(CharacterTypeEnum.Enemy,1,10,10,2,1,1,1,100,100,1);
                 InitChessPos(personData);
             }
         }
